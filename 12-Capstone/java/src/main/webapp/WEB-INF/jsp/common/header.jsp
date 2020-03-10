@@ -6,7 +6,7 @@
 
 
 <head>
-<c:url value="/css/solarsystemgeek.css" var="cssHref" />
+<c:url value="/css/site.css" var="cssHref" />
 <link rel="stylesheet" href="${cssHref}">
 <meta charset="ISO-8859-1">
 <title>National Park Geek</title>
@@ -15,7 +15,7 @@
 	<header>
 		<c:url var="home" value="/" />
 		<c:url var="logo" value="/img/logo.png" />
-		<a href="${home}"><img src="${logo}" alt="logo" /></a>
+		<a href="${home}"><img src="${logo}" alt="logo" id="logo"/></a>
 		<h1>National Park Geek</h1>
 	</header>
 	<nav>
