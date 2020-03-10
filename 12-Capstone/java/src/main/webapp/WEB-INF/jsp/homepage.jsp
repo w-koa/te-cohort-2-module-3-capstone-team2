@@ -12,12 +12,13 @@
 
 <div>
 	<c:forEach var="park" items="${parks}">
-		<div>
+		<div class="parkInfoBlock">
 
 			<c:set var="parkImage" value="${park.parkCode}" />
 			<c:set var="parkImageLc" value="${fn:toLowerCase(parkImage) }" />
 			<c:url var="image" value="/img/parks/${parkImageLc}.jpg" />
-			<img src="${image}" style="" alt="park photo" />
+			<c:url var="parkDetails" value="/park/details?code=${park.parkCode}"/>
+			<a href="${parkDetails}"><img src="${image}" style="" alt="park photo" /></a>
 			<div>
 				<h2>
 					<c:out value="${park.parkName}" />

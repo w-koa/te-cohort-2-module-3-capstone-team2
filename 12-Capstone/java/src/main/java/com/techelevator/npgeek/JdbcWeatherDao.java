@@ -1,5 +1,8 @@
 package com.techelevator.npgeek;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +23,15 @@ public class JdbcWeatherDao implements WeatherDao {
 	}
 	
 	@Override
-	public Weather getForecastByCode(String parkCode) {
-		Weather weather = new Weather();
+	public List<Weather> getForecastByCode(String parkCode) {
+		List<Weather> weatherForcasts = new ArrayList<>();
 		String sqlSelectByParkCode = "SELECT fivedayforecast, low, high, forecast "
 				+ "FROM weather WHERE parkcode = ?";
 				SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectByParkCode);
 				if(results.next()) {
-					weather = mapRowToWeather(results);
+					weatherForcasts.add(mapRowToWeather(results));
 				}
-		return weather;
+		return weatherForcasts;
 	}
 	
 	private Weather mapRowToWeather(SqlRowSet row) { 

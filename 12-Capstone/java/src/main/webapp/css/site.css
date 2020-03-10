@@ -1,3 +1,19 @@
 #logo {
 	width: 750px;
 }
+
+nav ul li {
+	list-style: none;
+	
+	
+}
+
+.parkInfoBlock {
+	display: flex;
+	padding: 20px;
+}
+
+.parkInfoBlock img {
+	width: 350px;
+	padding-right: 20px;
+}

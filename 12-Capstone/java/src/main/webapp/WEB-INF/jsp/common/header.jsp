@@ -19,7 +19,7 @@
 		<h1>National Park Geek</h1>
 	</header>
 	<nav>
-		<h2>Explore the National Parks</h2>
+		<h2>Explore the National Parks!</h2>
 		<ul>
 			<c:url var="survey" value="/survey" />
 			<li><a href="${home}">Home</a></li>
