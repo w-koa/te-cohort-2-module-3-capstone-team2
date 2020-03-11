@@ -46,6 +46,11 @@ public class NationalParkController {
 	@RequestMapping(path = "/park/details", method = RequestMethod.GET)
 	public String displayParkDetails(@RequestParam String parkCode, ModelMap map, HttpSession session) {
 
+		if (session.getAttribute("tempPreference") == null) {
+			session.setAttribute("tempPreference", "fahrenheit");
+		}
+		
+		
 		List<Weather> weatherForecasts = weatherDao.getForecastByCode(parkCode);
 
 		Park park = parkDao.getParkByCode(parkCode);
@@ -70,11 +75,13 @@ public class NationalParkController {
 				weatherForecasts.get(i).setLowInF(tempLowInCelcius);
 				weatherForecasts.get(i).setHighInF(tempHighInCelcius);
 			}
+			map.addAttribute("forecasts", weatherForecasts);
 		}
 		
+		
 		Park park = parkDao.getParkByCode(parkCode);
-		map.addAttribute("forecasts", weatherForecasts);
 		map.addAttribute("park", park);
+		map.addAttribute("tempPreference", tempPreference);
 		session.setAttribute("park", park);
 		session.setAttribute("tempPreference", tempPreference);
 		
@@ -108,8 +115,9 @@ public class NationalParkController {
 	
 	@RequestMapping(path = "/topParks", method = RequestMethod.GET)
 	public String displayTopParks(ModelMap map) {
-		List <Park> topFiveParks = new ArrayList<>();
 		List<Park> surveyTopFive = surveyDao.getTopFiveParks();
+		List <Park> topFiveParks = new ArrayList<>();
+		
 		for(int i = 0; i < surveyTopFive.size(); i++) {
 			Park park = parkDao.getParkByCode(surveyTopFive.get(i).getParkCode());
 			topFiveParks.add(park);

@@ -42,18 +42,18 @@ public class JdbcSurveyDao implements SurveyDao {
 
 	@Override
 	public List<Park> getTopFiveParks() {
-		List<Park> topFiveParks  = new ArrayList<>();
+		List<Park> topFiveParks = new ArrayList<>();
 		String sqlCountVotes = "SELECT COUNT(parkcode) AS park_vote, parkcode FROM "
-		+ "survey_result GROUP BY parkcode ORDER BY park_vote desc limit 5";
+				+ "survey_result GROUP BY parkcode ORDER BY park_vote desc limit 5";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlCountVotes);
-		while(results.next()) {
+		while (results.next()) {
 			Park park = new Park();
 			park.setParkVotes(results.getInt("park_vote"));
 			park.setParkCode(results.getString("parkcode"));
-			}
-		
+			topFiveParks.add(park);
+		}
+
 		return topFiveParks;
 	}
 
 }
-
