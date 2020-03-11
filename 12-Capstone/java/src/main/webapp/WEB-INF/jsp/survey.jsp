@@ -16,8 +16,8 @@
 		<form:form action="${processSurvey}" method="POST"
 			modelAttribute="survey">
 			<div class="formInputGroup">
-				<label for="favoritePark">Favorite Park: <select
-					name="favoritePark">
+				<label for="parkCode">Favorite Park: <select
+					name="parkCode">
 						<option value="CVNP">Cuyahoga Valley National Park</option>
 						<option value="ENP">Everglades National Park</option>
 						<option value="GCNP">Grand Canyon National Park</option>

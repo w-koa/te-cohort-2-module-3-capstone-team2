@@ -1,5 +1,6 @@
 package com.techelevator.npgeek.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -106,8 +107,14 @@ public class NationalParkController {
 	}
 	
 	@RequestMapping(path = "/topParks", method = RequestMethod.GET)
-	public String displayTopParks() {
-		
+	public String displayTopParks(ModelMap map) {
+		List <Park> topFiveParks = new ArrayList<>();
+		List<Park> surveyTopFive = surveyDao.getTopFiveParks();
+		for(int i = 0; i < surveyTopFive.size(); i++) {
+			Park park = parkDao.getParkByCode(surveyTopFive.get(i).getParkCode());
+			topFiveParks.add(park);
+		}
+		map.addAttribute("topFiveParks", topFiveParks);
 		return "topparks";
 	}
 

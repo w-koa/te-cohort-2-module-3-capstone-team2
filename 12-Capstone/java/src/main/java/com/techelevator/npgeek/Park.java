@@ -16,6 +16,7 @@ private String quoteAuthor;
 private String description;
 private int entryFee;
 private int animalSpecies;
+private int parkVotes;
 
 
 public String getParkCode() {
@@ -107,5 +108,11 @@ public int getAnimalSpecies() {
 }
 public void setAnimalSpecies(int animalSpecies) {
 	this.animalSpecies = animalSpecies;
+}
+public int getParkVotes() {
+	return parkVotes;
+}
+public void setParkVotes(int parkVotes) {
+	this.parkVotes = parkVotes;
 }
 }

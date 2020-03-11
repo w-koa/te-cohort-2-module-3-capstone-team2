@@ -14,7 +14,7 @@
 
 
 <div>
-	<c:forEach var="park" items="${parks}">
+	<c:forEach var="park" items="${topFiveParks}">
 		<div class="parkInfoBlock">
 
 			<c:set var="parkImage" value="${park.parkCode}" />

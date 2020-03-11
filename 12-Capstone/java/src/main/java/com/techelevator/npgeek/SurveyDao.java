@@ -1,9 +1,11 @@
 package com.techelevator.npgeek;
 
+import java.util.List;
+
 public interface SurveyDao {
 
 	public void saveSurvey (Survey survey);
-	
-	public int getFavoritePark ();
+
+	public List<Park> getTopFiveParks();
 	
 }
