@@ -45,15 +45,6 @@ public class NationalParkController {
 
 	@RequestMapping(path = "/park/details", method = RequestMethod.GET)
 	public String displayParkDetails(@RequestParam String parkCode, ModelMap map, HttpSession session) {
-<<<<<<< HEAD
-		if (session.getAttribute("tempPreference") == null) {
-			session.setAttribute("tempPreference", "fahrenheit");
-			}
-		String tempPreference = (String) session.getAttribute("tempPreference");
-		
-		List<Weather> weatherForecasts = weatherDao.getForecastByCode(parkCode, tempPreference);
-		
-=======
 
 		if (session.getAttribute("tempPreference") == null) {
 			session.setAttribute("tempPreference", "fahrenheit");
@@ -62,7 +53,6 @@ public class NationalParkController {
 		
 		List<Weather> weatherForecasts = weatherDao.getForecastByCode(parkCode);
 
->>>>>>> 13b96b2193b18b555d14ed80e80e1c4a6accc80e
 		Park park = parkDao.getParkByCode(parkCode);
 		map.addAttribute("forecasts", weatherForecasts);
 		map.addAttribute("park", park);
@@ -72,14 +62,10 @@ public class NationalParkController {
 	}
 
 	@RequestMapping(path = "/park/details", method = RequestMethod.POST)
-	public String getTemperaturePreference(@RequestParam String tempPreference,
+	public String getTemperaturePreference(@RequestParam String parkCode, @RequestParam String tempPreference,
 			ModelMap map, HttpSession session) {
-		Park park = (Park) session.getAttribute("park");
-		List<Weather> weatherForecasts = weatherDao.getForecastByCode(park.getParkCode(), tempPreference);
+		List<Weather> weatherForecasts = weatherDao.getForecastByCode(parkCode);
 		
-<<<<<<< HEAD
-		map.addAttribute("forecasts", weatherForecasts);
-=======
 		if (tempPreference.equals("celcius")) {
 			for (int i = 0; i < weatherForecasts.size(); i++) {
 				int tempLowInFahrenheit = weatherForecasts.get(i).getLowInF();
@@ -94,7 +80,6 @@ public class NationalParkController {
 		
 		
 		Park park = parkDao.getParkByCode(parkCode);
->>>>>>> 13b96b2193b18b555d14ed80e80e1c4a6accc80e
 		map.addAttribute("park", park);
 		map.addAttribute("tempPreference", tempPreference);
 		session.setAttribute("park", park);

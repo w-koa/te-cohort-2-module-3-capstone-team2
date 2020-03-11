@@ -101,7 +101,7 @@
 		<h2>Park 5-day Weather Forecast</h2>
 	</div>
 	<div>
-		<form method="POST" action="/m3-java-capstone/park/details?parkCode=${park.parkCode}">
+		<form method="POST" action="/park/details?parkCode=${park.parkCode}">
 			<input type="radio" id="fahrenheit" name="tempPreference"
 				value="fahrenheit"> <label for="fahrenheit">Fahrenheit</label>
 			<input type="radio" id="celcius" name="tempPreference"
@@ -130,56 +130,6 @@
 							alt="${forecast.forecast}" />
 					</c:otherwise>
 				</c:choose>
-<<<<<<< HEAD
-
-
-				<div>
-					<h4>High</h4>
-	
-					<c:out value="${forecast.highInF}" />
-				</div>
-				<div>
-					<h4>Low</h4>
-					<c:out value="${forecast.lowInF}" />
-				</div>
-				<div>
-					<c:choose>
-						<c:when
-							test="${forecast.highInF - forecast.lowInF >=20  && forecast.forecast.equals('sunny')}">
-							<p>Wear breathable layers and bring sun block!</p>
-						</c:when>
-						<c:when
-							test="${forecast.highInF - forecast.lowInF >=20  && forecast.forecast.equals('rain')}">
-							<p>Wear breathable layers, pack rain gear, and wear
-								waterproof shoes!</p>
-						</c:when>
-						<c:when
-							test="${forecast.highInF - forecast.lowInF >=20  && forecast.forecast.equals('snow')}">
-							<p>Wear breathable layers and stay warm!</p>
-						</c:when>
-						<c:when test="${forecast.forecast.equals('snow')}">
-							<p>Pack snow shoes!</p>
-						</c:when>
-						<c:when test="${forecast.forecast.equals('rain')}">
-							<p>Pack rain gear and wear waterproof shoes!</p>
-						</c:when>
-						<c:when test="${forecast.forecast.equals('thunderstorms')}">
-							<p>Seek shelter and avoid hiking on exposed ridges!</p>
-						</c:when>
-						<c:when test="${forecast.forecast.equals('sunny')}">
-							<p>Pack sun block!</p>
-						</c:when>
-						<c:when test="${forecast.highInF > 75}">
-							<p>Pack an extra gallon of water!</p>
-						</c:when>
-						<c:when test="${forecast.lowInF < 20}">
-							<p>Beware of dangerously low temperatures, stay warm!</p>
-						</c:when>
-						<c:when test="${forecast.highInF - forecast.lowInF >=20}">
-							<p>Wear breathable layers!</p>
-						</c:when>
-					</c:choose>
-=======
 				<div>
 					<div>
 						<div>
@@ -232,7 +182,6 @@
 							</c:otherwise>
 						</c:choose>
 					</div>
->>>>>>> 13b96b2193b18b555d14ed80e80e1c4a6accc80e
 				</div>
 			</div>
 		</c:forEach>
