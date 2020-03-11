@@ -101,7 +101,7 @@
 		<h2>Park 5-day Weather Forecast</h2>
 	</div>
 	<div>
-		<form method="POST" action="/park/details?parkCode=${park.parkCode}">
+		<form method="POST" action="/m3-java-capstone/park/details?parkCode=${park.parkCode}">
 			<input type="radio" id="fahrenheit" name="tempPreference"
 				value="fahrenheit"> <label for="fahrenheit">Fahrenheit</label>
 			<input type="radio" id="celcius" name="tempPreference"
@@ -129,6 +129,7 @@
 
 				<div>
 					<h4>High</h4>
+	
 					<c:out value="${forecast.highInF}" />
 				</div>
 				<div>
@@ -143,7 +144,8 @@
 						</c:when>
 						<c:when
 							test="${forecast.highInF - forecast.lowInF >=20  && forecast.forecast.equals('rain')}">
-							<p>Wear breathable layers, pack rain gear, and wear waterproof shoes!</p>
+							<p>Wear breathable layers, pack rain gear, and wear
+								waterproof shoes!</p>
 						</c:when>
 						<c:when
 							test="${forecast.highInF - forecast.lowInF >=20  && forecast.forecast.equals('snow')}">

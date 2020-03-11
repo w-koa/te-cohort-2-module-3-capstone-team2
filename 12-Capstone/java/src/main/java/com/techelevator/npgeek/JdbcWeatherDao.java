@@ -21,15 +21,25 @@ public class JdbcWeatherDao implements WeatherDao {
 	}
 
 	@Override
-	public List<Weather> getForecastByCode(String parkCode) {
-		List<Weather> weatherForcasts = new ArrayList<>();
+	public List<Weather> getForecastByCode(String parkCode, String tempPreference) {
+		List<Weather> weatherForecasts = new ArrayList<>();
 		String sqlSelectByParkCode = "SELECT fivedayforecastvalue, low, high, forecast "
 				+ "FROM weather WHERE parkcode = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectByParkCode, parkCode);
 		while (results.next()) {
-			weatherForcasts.add(mapRowToWeather(results));
+			weatherForecasts.add(mapRowToWeather(results));
 		}
-		return weatherForcasts;
+		if(tempPreference.equals("celcius")) {
+			for(int i = 0; i< weatherForecasts.size(); i++) {
+				int tempLowInFahrenheit = weatherForecasts.get(i).getLowInF();
+				int tempHighInFahrenheit = weatherForecasts.get(i).getHighInF();
+				int tempLowInCelcius = (int) ((tempLowInFahrenheit - 32) / 1.8);
+				int tempHighInCelcius = (int) ((tempHighInFahrenheit - 32) / 1.8);
+				weatherForecasts.get(i).setLowInF(tempLowInCelcius);
+				weatherForecasts.get(i).setHighInF(tempHighInCelcius);
+			}
+		}
+		return weatherForecasts;
 	}
 
 	private Weather mapRowToWeather(SqlRowSet row) {
