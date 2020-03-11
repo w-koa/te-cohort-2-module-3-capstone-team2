@@ -4,8 +4,7 @@
 
 nav ul li {
 	list-style: none;
-	
-	
+
 }
 
 .parkInfoBlock {
@@ -16,4 +15,16 @@ nav ul li {
 .parkInfoBlock img {
 	width: 350px;
 	padding-right: 20px;
+}
+
+.weatherContainer {
+	display: flex;
+}
+
+.weatherPic {
+	width: 120px;
+}
+
+.bold {
+	font-weight: bold;
 }

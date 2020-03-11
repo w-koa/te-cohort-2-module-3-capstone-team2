@@ -4,13 +4,13 @@ public class Park {
 private String parkCode;
 private String parkName;
 private String state;
-private int acerage;
+private int acreage;
 private int elevationInFeet;
 private double milesOfTrail;
 private int numberOfCampsites;
 private String climate;
 private int yearFounded;
-private int annualVistors;
+private int annualVisitors;
 private String quote;
 private String quoteAuthor;
 private String description;
@@ -36,11 +36,11 @@ public String getState() {
 public void setState(String state) {
 	this.state = state;
 }
-public int getAcerage() {
-	return acerage;
+public int getAcreage() {
+	return acreage;
 }
-public void setAcerage(int acerage) {
-	this.acerage = acerage;
+public void setAcreage(int acerage) {
+	this.acreage = acerage;
 }
 public int getElevationInFeet() {
 	return elevationInFeet;
@@ -72,11 +72,11 @@ public int getYearFounded() {
 public void setYearFounded(int yearFounded) {
 	this.yearFounded = yearFounded;
 }
-public int getAnnualVistors() {
-	return annualVistors;
+public int getAnnualVisitors() {
+	return annualVisitors;
 }
-public void setAnnualVistors(int annualVistors) {
-	this.annualVistors = annualVistors;
+public void setAnnualVisitors(int annualVisitors) {
+	this.annualVisitors = annualVisitors;
 }
 public String getQuote() {
 	return quote;
