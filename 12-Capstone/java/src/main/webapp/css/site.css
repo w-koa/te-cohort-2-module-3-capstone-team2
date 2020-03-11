@@ -28,3 +28,24 @@ nav ul li {
 .bold {
 	font-weight: bold;
 }
+
+form div {
+	padding: 10px 0px;
+}
+
+form div label {
+	width: 200px;
+	display: inline-block;
+	vertical-align: top;
+	padding-left: 20px;
+	color: black;
+}
+
+.formSubmitButton {
+	text-align: center;
+	margin-left: 20px;
+}
+
+.error {
+	color: red;
+}

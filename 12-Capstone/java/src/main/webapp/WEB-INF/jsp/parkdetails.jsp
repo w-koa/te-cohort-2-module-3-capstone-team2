@@ -139,11 +139,11 @@
 					<c:choose>
 						<c:when
 							test="${forecast.highInF - forecast.lowInF >=20  && forecast.forecast.equals('sunny')}">
-							<p>Wear breathable layers and bring sunblock!</p>
+							<p>Wear breathable layers and bring sun block!</p>
 						</c:when>
 						<c:when
 							test="${forecast.highInF - forecast.lowInF >=20  && forecast.forecast.equals('rain')}">
-							<p>Wear breathable layers, pack rain gear wear waterproof shoes!</p>
+							<p>Wear breathable layers, pack rain gear, and wear waterproof shoes!</p>
 						</c:when>
 						<c:when
 							test="${forecast.highInF - forecast.lowInF >=20  && forecast.forecast.equals('snow')}">
@@ -153,19 +153,19 @@
 							<p>Pack snow shoes!</p>
 						</c:when>
 						<c:when test="${forecast.forecast.equals('rain')}">
-							<p>Pack rain gear and waterproof shoes!</p>
+							<p>Pack rain gear and wear waterproof shoes!</p>
 						</c:when>
 						<c:when test="${forecast.forecast.equals('thunderstorms')}">
 							<p>Seek shelter and avoid hiking on exposed ridges!</p>
 						</c:when>
 						<c:when test="${forecast.forecast.equals('sunny')}">
-							<p>Pack sunblock!</p>
+							<p>Pack sun block!</p>
 						</c:when>
 						<c:when test="${forecast.highInF > 75}">
 							<p>Pack an extra gallon of water!</p>
 						</c:when>
 						<c:when test="${forecast.lowInF < 20}">
-							<p>Beware of dangerously low temperatures!</p>
+							<p>Beware of dangerously low temperatures, stay warm!</p>
 						</c:when>
 						<c:when test="${forecast.highInF - forecast.lowInF >=20}">
 							<p>Wear breathable layers!</p>
