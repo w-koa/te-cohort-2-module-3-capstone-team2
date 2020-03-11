@@ -17,7 +17,7 @@
 			<c:set var="parkImage" value="${park.parkCode}" />
 			<c:set var="parkImageLc" value="${fn:toLowerCase(parkImage) }" />
 			<c:url var="image" value="/img/parks/${parkImageLc}.jpg" />
-			<c:url var="parkDetails" value="/park/details?code=${park.parkCode}"/>
+			<c:url var="parkDetails" value="/park/details?parkCode=${park.parkCode}"/>
 			<a href="${parkDetails}"><img src="${image}" style="" alt="park photo" /></a>
 			<div>
 				<h2>

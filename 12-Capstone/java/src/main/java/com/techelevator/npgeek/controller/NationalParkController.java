@@ -40,6 +40,7 @@ public class NationalParkController {
 		List<Weather> weatherForecasts = weatherDao.getForecastByCode(parkCode);
 		
 		Park park = parkDao.getParkByCode(parkCode);
+		map.addAttribute("forecasts", weatherForecasts);
 		map.addAttribute("park", park);
 		session.setAttribute("park", park);
 		return "parkdetails";
