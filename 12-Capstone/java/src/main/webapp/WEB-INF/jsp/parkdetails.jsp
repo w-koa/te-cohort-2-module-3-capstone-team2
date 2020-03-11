@@ -100,7 +100,15 @@
 	<div>
 		<h2>Park 5-day Weather Forecast</h2>
 	</div>
-
+	<div>
+		<form method="POST" action="/park/details?parkCode=${park.parkCode}">
+			<input type="radio" id="fahrenheit" name="tempPreference"
+				value="fahrenheit"> <label for="fahrenheit">Fahrenheit</label>
+			<input type="radio" id="celcius" name="tempPreference"
+				value="celcius"> <label for="celcius">Celcius</label> <input
+				type="submit" value="Submit" />
+		</form>
+	</div>
 	<div class="weatherContainer">
 
 		<c:forEach var="forecast" items="${forecasts}">
@@ -127,10 +135,43 @@
 					<h4>Low</h4>
 					<c:out value="${forecast.lowInF}" />
 				</div>
-
-
-
-
+				<div>
+					<c:choose>
+						<c:when
+							test="${forecast.highInF - forecast.lowInF >=20  && forecast.forecast.equals('sunny')}">
+							<p>Wear breathable layers and bring sunblock!</p>
+						</c:when>
+						<c:when
+							test="${forecast.highInF - forecast.lowInF >=20  && forecast.forecast.equals('rain')}">
+							<p>Wear breathable layers, pack rain gear wear waterproof shoes!</p>
+						</c:when>
+						<c:when
+							test="${forecast.highInF - forecast.lowInF >=20  && forecast.forecast.equals('snow')}">
+							<p>Wear breathable layers and stay warm!</p>
+						</c:when>
+						<c:when test="${forecast.forecast.equals('snow')}">
+							<p>Pack snow shoes!</p>
+						</c:when>
+						<c:when test="${forecast.forecast.equals('rain')}">
+							<p>Pack rain gear and waterproof shoes!</p>
+						</c:when>
+						<c:when test="${forecast.forecast.equals('thunderstorms')}">
+							<p>Seek shelter and avoid hiking on exposed ridges!</p>
+						</c:when>
+						<c:when test="${forecast.forecast.equals('sunny')}">
+							<p>Pack sunblock!</p>
+						</c:when>
+						<c:when test="${forecast.highInF > 75}">
+							<p>Pack an extra gallon of water!</p>
+						</c:when>
+						<c:when test="${forecast.lowInF < 20}">
+							<p>Beware of dangerously low temperatures!</p>
+						</c:when>
+						<c:when test="${forecast.highInF - forecast.lowInF >=20}">
+							<p>Wear breathable layers!</p>
+						</c:when>
+					</c:choose>
+				</div>
 			</div>
 		</c:forEach>
 

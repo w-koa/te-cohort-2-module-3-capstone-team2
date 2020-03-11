@@ -23,33 +23,59 @@ public class NationalParkController {
 	private JdbcParkDao parkDao;
 	@Autowired
 	private JdbcWeatherDao weatherDao;
-	
-	@RequestMapping(path = {"/", "/homepage"}, method = RequestMethod.GET)
+
+	@RequestMapping(path = { "/", "/homepage" }, method = RequestMethod.GET)
 	public String displayHome(ModelMap map, HttpSession session) {
-		
+
 		List<Park> parks = parkDao.getAllParks();
 		map.addAttribute("parks", parks);
 		session.setAttribute("parks", parks);
-		
+
 		return "homepage";
 	}
-	
+
 	@RequestMapping(path = "/park/details", method = RequestMethod.GET)
 	public String displayParkDetails(@RequestParam String parkCode, ModelMap map, HttpSession session) {
-		
+
 		List<Weather> weatherForecasts = weatherDao.getForecastByCode(parkCode);
-		
+
 		Park park = parkDao.getParkByCode(parkCode);
 		map.addAttribute("forecasts", weatherForecasts);
 		map.addAttribute("park", park);
 		session.setAttribute("park", park);
+		session.getAttribute("tempPreference");
 		return "parkdetails";
 	}
-	
-	@RequestMapping(path="/survey", method = RequestMethod.GET)
+
+	@RequestMapping(path = "/survey", method = RequestMethod.GET)
 	public String displaySurvey() {
-		
+
 		return "survey";
 	}
-	
+
+	@RequestMapping(path = "/park/details", method = RequestMethod.POST)
+	public String getTemperaturePreference(@RequestParam String parkCode, @RequestParam String tempPreference,
+			ModelMap map, HttpSession session) {
+		List<Weather> weatherForecasts = weatherDao.getForecastByCode(parkCode);
+
+		if (tempPreference.equals("celcius")) {
+			for (int i = 0; i < weatherForecasts.size(); i++) {
+				int tempLowInFahrenheit = weatherForecasts.get(i).getLowInF();
+				int tempHighInFahrenheit = weatherForecasts.get(i).getHighInF();
+				int tempLowInCelcius = (int) ((tempLowInFahrenheit - 32) / 1.8);
+				int tempHighInCelcius = (int) ((tempHighInFahrenheit - 32) / 1.8);
+				weatherForecasts.get(i).setLowInF(tempLowInCelcius);
+				weatherForecasts.get(i).setHighInF(tempHighInCelcius);
+			}
+		}
+
+		Park park = parkDao.getParkByCode(parkCode);
+		map.addAttribute("forecasts", weatherForecasts);
+		map.addAttribute("park", park);
+		session.setAttribute("park", park);
+		session.setAttribute("tempPreference", tempPreference);
+
+		return "redirect:/park/details";
+	}
+
 }
