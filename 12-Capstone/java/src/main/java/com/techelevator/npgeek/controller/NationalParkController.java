@@ -47,11 +47,11 @@ public class NationalParkController {
 	public String displayParkDetails(@RequestParam String parkCode, ModelMap map, HttpSession session) {
 
 		if (session.getAttribute("tempPreference") == null) {
-			session.setAttribute("tempPreference", "fahrenheit");
+			session.setAttribute("tempPreference", "F");
 		}
+		String tempPref = (String) session.getAttribute("tempPreference");
 		
-		
-		List<Weather> weatherForecasts = weatherDao.getForecastByCode(parkCode);
+		List<Weather> weatherForecasts = weatherDao.getForecastByCode(parkCode, tempPref);
 
 		Park park = parkDao.getParkByCode(parkCode);
 		map.addAttribute("forecasts", weatherForecasts);
@@ -63,29 +63,13 @@ public class NationalParkController {
 
 	@RequestMapping(path = "/park/details", method = RequestMethod.POST)
 	public String getTemperaturePreference(@RequestParam String parkCode, @RequestParam String tempPreference,
-			ModelMap map, HttpSession session) {
-		List<Weather> weatherForecasts = weatherDao.getForecastByCode(parkCode);
-		
-		if (tempPreference.equals("celcius")) {
-			for (int i = 0; i < weatherForecasts.size(); i++) {
-				int tempLowInFahrenheit = weatherForecasts.get(i).getLowInF();
-				int tempHighInFahrenheit = weatherForecasts.get(i).getHighInF();
-				int tempLowInCelcius = (int) ((tempLowInFahrenheit - 32) / 1.8);
-				int tempHighInCelcius = (int) ((tempHighInFahrenheit - 32) / 1.8);
-				weatherForecasts.get(i).setLowInF(tempLowInCelcius);
-				weatherForecasts.get(i).setHighInF(tempHighInCelcius);
-			}
-			map.addAttribute("forecasts", weatherForecasts);
-		}
-		
+			HttpSession session) {
 		
 		Park park = parkDao.getParkByCode(parkCode);
-		map.addAttribute("park", park);
-		map.addAttribute("tempPreference", tempPreference);
 		session.setAttribute("park", park);
 		session.setAttribute("tempPreference", tempPreference);
 		
-		return "redirect:/park/details";
+		return "redirect:/park/details?parkCode=" + parkCode;
 	}
 	
 	@RequestMapping(path = "/survey", method = RequestMethod.GET)

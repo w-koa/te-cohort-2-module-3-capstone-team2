@@ -3,8 +3,8 @@ package com.techelevator.npgeek;
 public class Weather {
 private String parkCode;
 private int forecastValue;
-private int lowInF;
-private int highInF;
+private int lowTemp;
+private int highTemp;
 private String forecast;
 
 public String getParkCode() {
@@ -19,17 +19,17 @@ public int getForecastValue() {
 public void setForecastValue(int forecastValue) {
 	this.forecastValue = forecastValue;
 }
-public int getLowInF() {
-	return lowInF;
+public int getLowTemp() {
+	return lowTemp;
 }
-public void setLowInF(int lowInF) {
-	this.lowInF = lowInF;
+public void setLowTemp(int lowTemp) {
+	this.lowTemp = lowTemp;
 }
-public int getHighInF() {
-	return highInF;
+public int getHighTemp() {
+	return highTemp;
 }
-public void setHighInF(int highInF) {
-	this.highInF = highInF;
+public void setHighTemp(int highTemp) {
+	this.highTemp = highTemp;
 }
 public String getForecast() {
 	return forecast;

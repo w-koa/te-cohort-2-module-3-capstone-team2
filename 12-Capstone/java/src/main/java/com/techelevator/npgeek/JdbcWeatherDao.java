@@ -29,14 +29,14 @@ public class JdbcWeatherDao implements WeatherDao {
 		while (results.next()) {
 			weatherForecasts.add(mapRowToWeather(results));
 		}
-		if(tempPreference.equals("celcius")) {
+		if(tempPreference.equals("C")) {
 			for(int i = 0; i< weatherForecasts.size(); i++) {
-				int tempLowInFahrenheit = weatherForecasts.get(i).getLowInF();
-				int tempHighInFahrenheit = weatherForecasts.get(i).getHighInF();
+				int tempLowInFahrenheit = weatherForecasts.get(i).getLowTemp();
+				int tempHighInFahrenheit = weatherForecasts.get(i).getHighTemp();
 				int tempLowInCelcius = (int) ((tempLowInFahrenheit - 32) / 1.8);
 				int tempHighInCelcius = (int) ((tempHighInFahrenheit - 32) / 1.8);
-				weatherForecasts.get(i).setLowInF(tempLowInCelcius);
-				weatherForecasts.get(i).setHighInF(tempHighInCelcius);
+				weatherForecasts.get(i).setLowTemp(tempLowInCelcius);
+				weatherForecasts.get(i).setHighTemp(tempHighInCelcius);
 			}
 		}
 		return weatherForecasts;
@@ -46,8 +46,8 @@ public class JdbcWeatherDao implements WeatherDao {
 
 		Weather weather = new Weather();
 		weather.setForecastValue(row.getInt("fivedayforecastvalue"));
-		weather.setLowInF(row.getInt("low"));
-		weather.setHighInF(row.getInt("high"));
+		weather.setLowTemp(row.getInt("low"));
+		weather.setHighTemp(row.getInt("high"));
 		weather.setForecast(row.getString("forecast"));
 		return weather;
 	}

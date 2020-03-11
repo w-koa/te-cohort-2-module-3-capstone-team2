@@ -53,7 +53,7 @@
 			</div>
 			<div>
 				<p>
-					<span class="bold">Acreage: </span> ${park.acreage}
+					<span class="bold">Acreage: </span> ${park.acreage} acres
 				</p>
 			</div>
 			<div>
@@ -101,23 +101,24 @@
 		<h2>Park 5-day Weather Forecast</h2>
 	</div>
 	<div>
-		<form method="POST" action="/park/details?parkCode=${park.parkCode}">
-			<input type="radio" id="fahrenheit" name="tempPreference"
-				value="fahrenheit"> <label for="fahrenheit">Fahrenheit</label>
-			<input type="radio" id="celcius" name="tempPreference"
-				value="celcius"> <label for="celcius">Celcius</label> <input
-				type="submit" value="Submit" />
+		<c:url var="setTempPref"
+			value="/park/details?parkCode=${park.parkCode}" />
+		<form method="POST" action="${setTempPref}">
+			<input type="radio" id="fahrenheit" name="tempPreference" value="F" checked>
+			<label for="fahrenheit">Fahrenheit</label> <input type="radio"
+				id="celcius" name="tempPreference" value="C"> <label
+				for="celcius">Celcius</label> <input type="submit" value="Choose" />
 		</form>
 	</div>
 
 	<div class="weatherContainer">
 
 		<c:forEach var="forecast" items="${forecasts}">
-			<c:if test="${forecast.forecastValue == 1}">
-				<h2>Today</h2>
-			</c:if>
-			<div class="weatherContainer">
 
+			<div class="weatherBlock">
+				<c:if test="${forecast.forecastValue == 1}">
+					<h2>Today</h2>
+				</c:if>
 				<c:choose>
 					<c:when test="${forecast.forecast.equals('partly cloudy')}">
 						<c:url var="forecastPic" value="/img/weather/partlyCloudy.png" />
@@ -134,26 +135,26 @@
 					<div>
 						<div>
 							<h4>High</h4>
-							<c:out value="${forecast.highInF}" />
+							<c:out value="${forecast.highTemp}°${tempPreference}" />
 						</div>
 						<div>
 							<h4>Low</h4>
-							<c:out value="${forecast.lowInF}" />
+							<c:out value="${forecast.lowTemp}°${tempPreference}" />
 						</div>
 					</div>
 					<div>
 						<c:choose>
 							<c:when
-								test="${forecast.highInF - forecast.lowInF >=20  && forecast.forecast.equals('sunny')}">
+								test="${forecast.highTemp - forecast.lowTemp >=20  && forecast.forecast.equals('sunny')}">
 								<p>Wear breathable layers and bring sun block!</p>
 							</c:when>
 							<c:when
-								test="${forecast.highInF - forecast.lowInF >=20  && forecast.forecast.equals('rain')}">
+								test="${forecast.highTemp - forecast.lowTemp >=20  && forecast.forecast.equals('rain')}">
 								<p>Wear breathable layers, pack rain gear, and wear
 									waterproof shoes!</p>
 							</c:when>
 							<c:when
-								test="${forecast.highInF - forecast.lowInF >=20  && forecast.forecast.equals('snow')}">
+								test="${forecast.highTemp - forecast.lowTemp >=20  && forecast.forecast.equals('snow')}">
 								<p>Wear breathable layers and stay warm!</p>
 							</c:when>
 							<c:when test="${forecast.forecast.equals('snow')}">
@@ -168,13 +169,13 @@
 							<c:when test="${forecast.forecast.equals('sunny')}">
 								<p>Pack sun block!</p>
 							</c:when>
-							<c:when test="${forecast.highInF > 75}">
+							<c:when test="${forecast.highTemp > 75}">
 								<p>Pack an extra gallon of water!</p>
 							</c:when>
-							<c:when test="${forecast.lowInF < 20}">
+							<c:when test="${forecast.lowTemp < 20}">
 								<p>Beware of dangerously low temperatures, stay warm!</p>
 							</c:when>
-							<c:when test="${forecast.highInF - forecast.lowInF >=20}">
+							<c:when test="${forecast.highTemp - forecast.lowTemp >=20}">
 								<p>Wear breathable layers!</p>
 							</c:when>
 							<c:otherwise>
