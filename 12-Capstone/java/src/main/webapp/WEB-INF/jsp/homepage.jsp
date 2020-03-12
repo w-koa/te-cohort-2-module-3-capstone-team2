@@ -23,8 +23,10 @@
 				<c:url var="image" value="/img/parks/${parkImageLc}.jpg" />
 				<c:url var="parkDetails"
 					value="/park/details?parkCode=${park.parkCode}" />
-				<a href="${parkDetails}"><img src="${image}" style=""
-					alt="park photo" /></a>
+				<div class="img-hover-zoom">
+					<a href="${parkDetails}"><img src="${image}" style=""
+						alt="park photo" /></a>
+				</div>
 				<div>
 					<h2>
 						<c:out value="${park.parkName}" />

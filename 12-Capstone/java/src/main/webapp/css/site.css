@@ -67,6 +67,15 @@ nav ul li {
 	padding-right: 20px;
 }
 
+
+.img-hover-zoom img {
+  transition: transform .5s ease;
+}
+
+.img-hover-zoom:hover img {
+  transform: scale(1.1);
+}
+
 .parkDetailContainer {
 	padding: 20px;
 }
