@@ -7,5 +7,7 @@ public interface SurveyDao {
 	public void saveSurvey (Survey survey);
 
 	public List<Park> getTopFiveParks();
+
+	public String getSurveyByParkId(String parkCode);
 	
 }

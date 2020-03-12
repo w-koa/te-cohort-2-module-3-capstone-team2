@@ -19,7 +19,7 @@ import com.techelevator.npgeek.JdbcParkDao;
 import com.techelevator.npgeek.JdbcSurveyDao;
 import com.techelevator.npgeek.JdbcWeatherDao;
 import com.techelevator.npgeek.Survey;
-import com.techelevator.view.Park;
+
 
 public class SurveyDaoTests {
 
