@@ -12,7 +12,7 @@
 <section>
 	<div>
 		<br>
-		<p style="margin-left: 20px">Select a park for more details!</p>
+		<p style="margin-left: 20px">Select a park to learn more!</p>
 	</div>
 	<div id="line">
 		<c:forEach var="park" items="${parks}">

@@ -22,7 +22,9 @@
 
 		<ul>
 			<c:url var="survey" value="/survey" />
+			<c:url var="topParks" value="/topParks"/>
 			<li><a href="${home}">Home</a></li>
 			<li><a href="${survey}">Survey</a></li>
+			<li><a href="${topParks}">Top Parks!</a></li>
 		</ul> 
 	</nav>

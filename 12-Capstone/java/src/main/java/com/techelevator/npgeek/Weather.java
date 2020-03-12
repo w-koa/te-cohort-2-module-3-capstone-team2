@@ -11,6 +11,7 @@ public class Weather {
 	private String recommendation;
 
 	// Method(s)
+	// Builds a string for weather recommendations
 	public String makeRecommendation(String tempPreference) {
 		String recommendation = "";
 		highTemp = getHighTemp();
