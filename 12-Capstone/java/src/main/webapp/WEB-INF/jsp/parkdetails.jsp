@@ -47,6 +47,18 @@
 			</div>
 			<div>
 				<p>
+					<span class="bold">Entry Fee: </span>
+					<c:out value="$${park.entryFee}" />
+				</p>
+			</div>
+			<div>
+				<p>
+					<span class="bold">Campsites: </span>
+					<c:out value="${park.numberOfCampsites}" />
+				</p>
+			</div>
+			<div>
+				<p>
 					<span class="bold">Annual Visitors: </span>
 					<c:out value="${park.annualVisitors}" />
 				</p>
@@ -68,12 +80,7 @@
 					<c:out value="${park.milesOfTrail} mi." />
 				</p>
 			</div>
-			<div>
-				<p>
-					<span class="bold">Campsites: </span>
-					<c:out value="${park.numberOfCampsites}" />
-				</p>
-			</div>
+
 			<div>
 				<p>
 					<span class="bold">Climate: </span>
@@ -86,12 +93,7 @@
 					<c:out value="${park.animalSpecies}" />
 				</p>
 			</div>
-			<div>
-				<p>
-					<span class="bold">Entry Fee: </span>
-					<c:out value="$${park.entryFee}" />
-				</p>
-			</div>
+
 		</div>
 
 
@@ -101,12 +103,13 @@
 		<h2>Park 5-day Weather Forecast</h2>
 	</div>
 	<div>
+		<p>Select temperature preference: </p>
 		<c:url var="setTempPref"
 			value="/park/details?parkCode=${park.parkCode}" />
 		<form method="POST" action="${setTempPref}">
-			<input type="radio" id="fahrenheit" name="tempPreference" value="F" checked>
-			<label for="fahrenheit">Fahrenheit</label> <input type="radio"
-				id="celcius" name="tempPreference" value="C"> <label
+			<input type="radio" id="fahrenheit" name="tempPreference" value="F"
+				checked> <label for="fahrenheit">Fahrenheit</label> <input
+				type="radio" id="celcius" name="tempPreference" value="C"> <label
 				for="celcius">Celcius</label> <input type="submit" value="Choose" />
 		</form>
 	</div>
@@ -133,16 +136,19 @@
 				</c:choose>
 				<div>
 					<div>
-						<div>
-							<h4>High</h4>
-							<c:out value="${forecast.highTemp}°${tempPreference}" />
-						</div>
-						<div>
-							<h4>Low</h4>
-							<c:out value="${forecast.lowTemp}°${tempPreference}" />
-						</div>
+						<table>
+							<tr>
+								<th>High</th>
+								<th>Low</th>
+							</tr>
+							<tr>
+								<td><c:out value="${forecast.highTemp}°${tempPreference}" /></td>
+								<td><c:out value="${forecast.lowTemp}°${tempPreference}" /></td>
+							</tr>
+						</table>
 					</div>
 					<div>
+						<p style="font-weight: bold">National Park Geek Weather Advice: </p>
 						<c:choose>
 							<c:when
 								test="${forecast.highTemp - forecast.lowTemp >=20  && forecast.forecast.equals('sunny')}">
