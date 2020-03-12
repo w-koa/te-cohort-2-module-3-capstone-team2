@@ -8,6 +8,6 @@ public interface SurveyDao {
 
 	public List<Park> getTopFiveParks();
 
-	public String getSurveyByParkId(String parkCode);
+	public List<Survey> getSurveyByParkId(String parkCode);
 	
 }

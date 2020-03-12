@@ -81,10 +81,8 @@ public class SurveyDaoTests {
 	testSurvey.setState("MI");
 	testSurvey.setActivityLevel("active");
 	surveyDao.saveSurvey(testSurvey);
-	boolean foundSurvey = false;
 	
-	
-	if (surveyDao.saveSurvey(survey);(testSurvey.() != null) {
+	if (surveyDAO != null) {
 		foundFlag = true;
 	}
 	assertTrue(foundFlag);

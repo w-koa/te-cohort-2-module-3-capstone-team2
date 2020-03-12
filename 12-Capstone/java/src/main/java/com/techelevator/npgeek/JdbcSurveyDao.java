@@ -22,6 +22,16 @@ public class JdbcSurveyDao implements SurveyDao {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
+	private Survey mapRowToSurvey(SqlRowSet results) {
+		Survey newSurveyResult = new Survey();
+		newSurveyResult.setSurveyId(results.getInt("surveyId"));
+		newSurveyResult.setParkCode(results.getString("parkCode"));
+		newSurveyResult.setEmail(results.getString("email"));
+		newSurveyResult.setState(results.getString("state"));
+		newSurveyResult.setActivityLevel(results.getString("activityLevel"));
+
+		return newSurveyResult;
+		}
 	@Override
 	public void saveSurvey(Survey survey) {
 		String sqlInsertSurveyResult = "INSERT INTO survey_result "
@@ -58,24 +68,13 @@ public class JdbcSurveyDao implements SurveyDao {
 	}
 
 	@Override
-	public String getSurveyByParkId(String parkCode) {
-		String sqlFindSurveyById = "SELECT * FROM survey_result WHERE surveyid = ?";
+	public List<Survey> getSurveyByParkId(String parkCode) {
+		String sqlFindSurveyById = "SELECT * FROM survey_result WHERE parkcode = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindSurveyById, parkCode);
-		Survey survey = null;
-		if(results.next()) {
-			survey = mapRowToSurvey(results);
+		List <Survey> surveyList = new ArrayList <> ();
+		while(results.next()) {
+			surveyList.add(mapRowToSurvey(results));
 		}
-		return survey;
+		return surveyList;
 	}
 }
-
-//public Site findSiteById(int id) {
-//	String sqlFindSiteById = "SELECT * FROM site WHERE site_id = ?";
-//	SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindSiteById, id);
-//	
-//	Site site = null;
-//	if (results.next()) {
-//		site = mapRowToSite(results);
-//	}
-//	return site;
-//}

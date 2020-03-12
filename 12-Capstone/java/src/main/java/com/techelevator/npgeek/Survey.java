@@ -2,6 +2,7 @@ package com.techelevator.npgeek;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 public class Survey {
 	private int surveyId;
@@ -13,6 +14,8 @@ public class Survey {
 	
 	private String state;
 	private String activityLevel;
+	
+	
 
 	public int getSurveyId() {
 		return surveyId;

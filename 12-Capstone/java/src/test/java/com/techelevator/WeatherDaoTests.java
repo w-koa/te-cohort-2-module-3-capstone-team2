@@ -21,11 +21,11 @@ import com.techelevator.npgeek.Weather;
 
 public class WeatherDaoTests {
 
-private static SingleConnectionDataSource dataSource;
-	
+	private static SingleConnectionDataSource dataSource;
+
 	private JdbcWeatherDao weatherDao;
 	private JdbcParkDao parkDao;
-	
+
 	@BeforeClass
 	public static void setupDataSource() {
 		dataSource = new SingleConnectionDataSource();
@@ -34,7 +34,6 @@ private static SingleConnectionDataSource dataSource;
 		dataSource.setPassword("postgres1");
 		dataSource.setAutoCommit(false);
 	}
-	
 
 	@Before
 	public void setup() {
@@ -42,30 +41,27 @@ private static SingleConnectionDataSource dataSource;
 				+ "state, acreage, elevationinfeet, milesoftrail, numberofcampsites, "
 				+ "climate, yearfounded, annualvisitorcount, inspirationalquote, "
 				+ "inspirationalquotesource, parkdescription, entryfee, numberofanimalspecies) "
-				+ "VALUES ('TPTP', 'TestPark', 'Michigan', 30, 50, 120.0, 323, 'tropical', 2000, "
+				+ "VALUES ('TPTP', 'TestPark', 'Michigan', 32, 50, 120.0, 323, 'tropical', 2000, "
 				+ "100000, 'test parks are great places', 'tim', 'test parks see millions of visitors', 8, 5000)";
-	  
-	    JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-	    jdbcTemplate.update(sqlInsertPark);
-	    parkDao = new JdbcParkDao(dataSource);
+
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		jdbcTemplate.update(sqlInsertPark);
+		parkDao = new JdbcParkDao(dataSource);
 		String sqlInsertWeather = "INSERT INTO weather (parkcode, fivedayforecastvalue, low, high, forecast)"
-				+ "VALUES ('TPTP', 1, 50, 80, 'rain')";
-	    jdbcTemplate.update(sqlInsertWeather);
-	    weatherDao = new JdbcWeatherDao(dataSource);
+				+ "VALUES ('TPTP', 1, 32, 47, 'rain')";
+		jdbcTemplate.update(sqlInsertWeather);
+		weatherDao = new JdbcWeatherDao(dataSource);
 	}
 
-	
 	@AfterClass
 	public static void closeDataSource() throws SQLException {
 		dataSource.destroy();
 	}
 
-
 	@After
 	public void rollback() throws SQLException {
 		dataSource.getConnection().rollback();
 	}
-
 
 	public DataSource getDataSource() {
 		return dataSource;
@@ -79,5 +75,14 @@ private static SingleConnectionDataSource dataSource;
 		assertEquals(expected, weather.getForecast());
 	}
 
-	
+//	@Test
+//	public void testGetForecastByCodeTemperatureConversion() {
+//		List<Weather> forecastList = weatherDao.getForecastByCode("TPTP", "C");
+//		int lowExpected = 0;
+//		int highExpected = 8;
+//		Weather weather = forecastList.get(0);
+//		assertEquals(lowExpected, weather.getLowTemp());
+//		assertEquals(highExpected, weather.getHighTemp());
+//	}
+// expected 0 for low and 7 for the high
 }
