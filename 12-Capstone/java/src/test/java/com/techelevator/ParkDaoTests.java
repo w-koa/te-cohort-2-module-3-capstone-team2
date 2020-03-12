@@ -44,7 +44,7 @@ public class ParkDaoTests {
 				+ "state, acreage, elevationinfeet, milesoftrail, numberofcampsites, "
 				+ "climate, yearfounded, annualvisitorcount, inspirationalquote, "
 				+ "inspirationalquotesource, parkdescription, entryfee, numberofanimalspecies) "
-				+ "VALUES ('TP', 'TestPark', 'Michigan', 30, 50, 120.0, 323, 'tropical', 2000, "
+				+ "VALUES ('TPTP', 'TestPark', 'Michigan', 30, 50, 120.0, 323, 'tropical', 2000, "
 				+ "100000, 'test parks are great places', 'tim', 'test parks see millions of visitors', 8, 5000)";
 	  
 	    JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
