@@ -52,15 +52,12 @@ public class NationalParkController {
 		String tempPref = (String) session.getAttribute("tempPreference");
 		
 		List<Weather> weatherForecasts = weatherDao.getForecastByCode(parkCode, tempPref);
-		List<String> weatherRecommendList = new ArrayList<>();
 		for (int i = 0; i < weatherForecasts.size(); i++) {
-			String recommendation = weatherDao.makeRecommendation(weatherForecasts.get(i), tempPref);
-			weatherRecommendList.add(recommendation);
+			String recommendation = weatherForecasts.get(i).makeRecommendation(tempPref);
+			weatherForecasts.get(i).setRecommendation(recommendation);
 		}
-		System.out.println(weatherRecommendList.get(0));
 		Park park = parkDao.getParkByCode(parkCode);
 		map.addAttribute("forecasts", weatherForecasts);
-		map.addAttribute("recommendList", weatherRecommendList);
 		map.addAttribute("park", park);
 		session.setAttribute("park", park);
 		session.getAttribute("tempPreference");

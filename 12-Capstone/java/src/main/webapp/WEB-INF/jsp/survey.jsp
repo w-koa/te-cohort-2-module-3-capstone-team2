@@ -10,8 +10,8 @@
 <title>National Park Geek Survey</title>
 </head>
 <section>
-	<div>
-		<div style="padding-top: 20px;">
+	<div class="formContainer">
+		<div style="padding-top: 1px">
 			<h2 style="margin-left: 20px">Enjoy the National Parks? Vote for
 				your Favorite!</h2>
 		</div>

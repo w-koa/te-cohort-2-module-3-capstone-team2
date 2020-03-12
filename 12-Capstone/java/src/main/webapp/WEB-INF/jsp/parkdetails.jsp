@@ -157,45 +157,10 @@
 					<div>
 						<p style="font-weight: bold">National Park Geek Weather
 							Advice:</p>
-						<c:choose>
-							<c:when
-								test="${forecast.highTemp - forecast.lowTemp >=20  && forecast.forecast.equals('sunny')}">
-								<p>Wear breathable layers and bring sun block!</p>
-							</c:when>
-							<c:when
-								test="${forecast.highTemp - forecast.lowTemp >=20  && forecast.forecast.equals('rain')}">
-								<p>Wear breathable layers, pack rain gear, and wear
-									waterproof shoes!</p>
-							</c:when>
-							<c:when
-								test="${forecast.highTemp - forecast.lowTemp >=20  && forecast.forecast.equals('snow')}">
-								<p>Wear breathable layers and stay warm!</p>
-							</c:when>
-							<c:when test="${forecast.forecast.equals('snow')}">
-								<p>Pack snow shoes!</p>
-							</c:when>
-							<c:when test="${forecast.forecast.equals('rain')}">
-								<p>Pack rain gear and wear waterproof shoes!</p>
-							</c:when>
-							<c:when test="${forecast.forecast.equals('thunderstorms')}">
-								<p>Seek shelter and avoid hiking on exposed ridges!</p>
-							</c:when>
-							<c:when test="${forecast.forecast.equals('sunny')}">
-								<p>Pack sun block!</p>
-							</c:when>
-							<c:when test="${forecast.highTemp > 75}">
-								<p>Pack an extra gallon of water!</p>
-							</c:when>
-							<c:when test="${forecast.lowTemp < 20}">
-								<p>Beware of dangerously low temperatures, stay warm!</p>
-							</c:when>
-							<c:when test="${forecast.highTemp - forecast.lowTemp >=20}">
-								<p>Wear breathable layers!</p>
-							</c:when>
-							<c:otherwise>
-								<p>Enjoy the day!</p>
-							</c:otherwise>
-						</c:choose>
+						<p>
+							<c:out value="${forecast.recommendation}" />
+						</p>
+
 					</div>
 				</div>
 			</div>

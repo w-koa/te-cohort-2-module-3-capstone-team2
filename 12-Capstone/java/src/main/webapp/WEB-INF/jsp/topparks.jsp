@@ -15,7 +15,7 @@
 	<h2>Decided by you!</h2>
 </div>
 
-<div>
+<div id="line">
 	<c:forEach var="park" items="${topFiveParks}">
 		<div class="parkInfoBlock">
 
@@ -24,13 +24,18 @@
 			<c:url var="image" value="/img/parks/${parkImageLc}.jpg" />
 			<c:url var="parkDetails"
 				value="/park/details?parkCode=${park.parkCode}" />
-			<a href="${parkDetails}"><img src="${image}" style=""
-				alt="park photo" /></a>
+			<div class="img-hover-zoom">
+				<a href="${parkDetails}"><img src="${image}" style=""
+					alt="park photo" /></a>
+			</div>
 			<div>
 				<h2>
 					<c:out value="${park.parkName}" />
 				</h2>
-				<p><c:out value="${park.parkVotes}"/> Votes!</p>
+				<p>
+					<c:out value="${park.parkVotes}" />
+					Vote(s)!
+				</p>
 				<h3>
 					<c:out value="${park.state}" />
 				</h3>

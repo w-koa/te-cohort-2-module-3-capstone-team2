@@ -54,7 +54,9 @@ nav ul li {
 	width: 200px;
 	padding-top: 5px;
 }
-
+#line {
+	border-top: 1px solid green;
+}
 .parkInfoBlock {
 	display: flex;
 	padding: 20px 20px 20px 20px;
@@ -66,7 +68,9 @@ nav ul li {
 	width: 350px;
 	padding-right: 20px;
 }
-
+.parkInfoBlock h2 {
+	margin-top:0px;
+}
 
 .img-hover-zoom img {
   transition: transform .5s ease;
@@ -77,7 +81,7 @@ nav ul li {
 }
 
 .parkDetailContainer {
-	padding: 20px;
+	padding: 40px;
 }
 .parkDetailContainer h1 {
 	font-size: 52px;
@@ -103,9 +107,9 @@ nav ul li {
 	padding: 10px;
 }
 .forecastHead {
-	padding-left: 20px;
+	padding: 20px;
+	padding-left: 40px;
 	border-top: 1px solid green;
-	padding: 10px;
 	background: linear-gradient(to right, #ffffff 50%, #99ccff 100%);
 }
 .weatherContainer {
@@ -114,7 +118,7 @@ nav ul li {
 	background: linear-gradient(to right, #ffffff 50%, #99ccff 100%);
 }
 .weatherBlock {
-	padding: 20px;
+	padding: 40px;
 	border-bottom: 1px solid green;
 	
 }
@@ -133,7 +137,10 @@ table td {
 .bold {
 	font-weight: bold;
 }
-
+.formContainer {
+	background-color: #ffffff;
+	padding-bottom: 20px;
+}
 form div {
 	padding: 10px 0px;
 }

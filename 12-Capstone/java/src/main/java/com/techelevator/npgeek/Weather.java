@@ -11,16 +11,18 @@ public class Weather {
 	private String recommendation;
 
 	// Method(s)
-	public String makeRecommendation(Weather weather, String tempPreference) {
+	public String makeRecommendation(String tempPreference) {
 		String recommendation = "";
-		int highTemp = weather.getHighTemp();
-		int lowTemp = weather.getLowTemp();
-		// Undoes conversion to C in order to properly build string
+		highTemp = getHighTemp();
+		lowTemp = getLowTemp();
+		
+		// If Celcius, convert to Fahrenheit in order to properly build string
 		if (tempPreference.equals("C")) {
-			highTemp = (int) ((highTemp + 32) * 1.8);
-			lowTemp = (int) ((lowTemp + 32) * 1.8);
+			highTemp = (int)  (9 * highTemp / 5) + 32;
+			lowTemp = (int) (9 * lowTemp / 5) + 32;
 		}
-
+		
+		// Adds to recommendation string based on weather conditions
 		if (lowTemp < 20) {
 			recommendation = recommendation + "Beware of frigid cold and stay warm! ";
 		}
@@ -30,20 +32,25 @@ public class Weather {
 		if ((highTemp - lowTemp) >= 20) {
 			recommendation = recommendation + "Wear breathable layers! ";
 		}
-		if (weather.getForecast().equals("sunny")) {
+		if (getForecast().equals("sunny")) {
 			recommendation = recommendation + "Pack sun block! ";
 		}
-		if (weather.getForecast().equals("rain")) {
+		if (getForecast().equals("rain")) {
 			recommendation = recommendation + "Pack rain gear and wear waterproof shoes! ";
 		}
-		if (weather.getForecast().equals("snow")) {
+		if (getForecast().equals("snow")) {
 			recommendation = recommendation + "Pack snow shoes! ";
 		}
-		if (weather.getForecast().equals("thunderstorms")) {
+		if (getForecast().equals("thunderstorms")) {
 			recommendation = recommendation + "Seek shelter and avoid hiking on exposed ridges! ";
 		} 
 		recommendation = recommendation + "Enjoy the day! ";
 
+		// Convert back to Celcius for display
+		if (tempPreference.equals("C")) {
+			highTemp = (int) ((highTemp - 32) / 1.8);
+			lowTemp = (int) ((lowTemp - 32) / 1.8);
+		}
 		return recommendation;
 	}
 

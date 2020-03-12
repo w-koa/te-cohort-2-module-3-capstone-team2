@@ -14,7 +14,7 @@
 		<br>
 		<p style="margin-left: 20px">Select a park for more details!</p>
 	</div>
-	<div>
+	<div id="line">
 		<c:forEach var="park" items="${parks}">
 			<div class="parkInfoBlock">
 
