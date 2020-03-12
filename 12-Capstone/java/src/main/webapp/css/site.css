@@ -1,14 +1,19 @@
+html {
+	background-color: #d8edde;
+}
+
 #logo {
 	width: 750px;
 }
 
 nav {
-	margin-top: 50px;
-	margin-bottom: 50px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding-bottom: 20px;
 }
 
-nav h2 {
-	padding-left: 60px;
+header h2 {
+	padding-left: 20px;
 }
 
 nav p {
@@ -18,7 +23,8 @@ nav p {
 }
 
 ul {
-	padding-left: 80px;
+	padding-left: 20px;
+	margin-bottom: 40px;
 }
 
 li {
@@ -34,7 +40,7 @@ li a {
 	vertical-align: middle;
 }
 nav ul {
-	width: 100%;
+	width: auto%;
 }
 
 
@@ -51,7 +57,9 @@ nav ul li {
 
 .parkInfoBlock {
 	display: flex;
-	padding: 20px;
+	padding: 20px 20px 20px 20px;
+	border-bottom: 1px solid;
+	border-color: green;
 }
 
 .parkInfoBlock img {
@@ -59,14 +67,58 @@ nav ul li {
 	padding-right: 20px;
 }
 
+.parkDetailContainer {
+	padding: 20px;
+}
+.parkDetailContainer h1 {
+	font-size: 52px;
+	text-align: center;
+}
+
+.parkDetailContainer img {
+	margin-left: 340px;
+}
+.quoteBlock h2 {
+	font-style: italic;
+	text-align: center;
+}
+.quoteBlock h4 {
+	text-align: center;
+	font-weight: normal;
+	font-size: 20px;
+}
+.entryAndCamp {
+	border: 1px solid;
+	border-color: green;
+	width: 120px;
+	padding: 10px;
+}
+.forecastHead {
+	padding-left: 20px;
+	border-top: 1px solid green;
+	padding: 10px;
+	background: linear-gradient(to right, #ffffff 50%, #99ccff 100%);
+}
 .weatherContainer {
 	display: flex;
 	flex-direction: column;
+	background: linear-gradient(to right, #ffffff 50%, #99ccff 100%);
+}
+.weatherBlock {
+	padding: 20px;
+	border-bottom: 1px solid green;
+	
 }
 
 .weatherPic {
 	width: 120px;
 	height: 120px;
+}
+table th {
+	padding-right: 20px;
+}
+table td {
+	padding-right: 20px;
 }
 
 .bold {
@@ -92,4 +144,9 @@ form div label {
 
 .error {
 	color: red;
+}
+
+.topFiveHead {
+	text-align: center;
+	padding: 20px;
 }

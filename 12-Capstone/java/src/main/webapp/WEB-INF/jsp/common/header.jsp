@@ -16,13 +16,13 @@
 		<c:url var="home" value="/" />
 		<c:url var="logo" value="/img/logo.png" />
 		<a href="${home}"><img src="${logo}" alt="logo" id="logo"/></a>
-		<h1>National Park Geek</h1>
+		<h2>Explore the National Parks!</h2>
 	</header>
 	<nav>
-		<h2>Explore the National Parks!</h2>
+
 		<ul>
 			<c:url var="survey" value="/survey" />
 			<li><a href="${home}">Home</a></li>
 			<li><a href="${survey}">Survey</a></li>
-		</ul>
+		</ul> 
 	</nav>

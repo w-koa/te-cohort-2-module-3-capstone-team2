@@ -11,13 +11,15 @@
 </head>
 <section>
 	<div>
-		<h2>Enjoy the National Parks? Vote for your Favorite!</h2>
+		<div style="padding-top: 20px;">
+			<h2 style="margin-left: 20px">Enjoy the National Parks? Vote for
+				your Favorite!</h2>
+		</div>
 		<c:url var="processSurvey" value="/survey" />
 		<form:form action="${processSurvey}" method="POST"
 			modelAttribute="survey">
 			<div class="formInputGroup">
-				<label for="parkCode">Favorite Park: <select
-					name="parkCode">
+				<label for="parkCode">Favorite Park: <select name="parkCode">
 						<option value="CVNP">Cuyahoga Valley National Park</option>
 						<option value="ENP">Everglades National Park</option>
 						<option value="GCNP">Grand Canyon National Park</option>

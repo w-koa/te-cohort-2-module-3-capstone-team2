@@ -10,28 +10,44 @@
 <title>National Park Geek - Park Details</title>
 </head>
 <section>
+
 	<div class="parkDetailContainer">
 		<header>
-			<h1>${park.parkName}</h1>
+			<h1>Welcome to ${park.parkName}!</h1>
 		</header>
 		<c:set var="parkImage" value="${park.parkCode}" />
 		<c:set var="parkImageLc" value="${fn:toLowerCase(parkImage) }" />
 		<c:url var="image" value="/img/parks/${parkImageLc}.jpg" />
 		<img src="${image}" alt="parkPic" />
 
-		<div>
-			<h3>
+		<div class="quoteBlock">
+			<h2>
 				<c:out value="${park.quote}" />
-			</h3>
+			</h2>
 			<h4>
 				-
 				<c:out value="${park.quoteAuthor}" />
 			</h4>
 		</div>
+		<div class="entryAndCamp">
+			<div>
+				<p>
+					<span class="bold">Entry Fee: </span>
+					<c:out value="$${park.entryFee}" />
+				</p>
+			</div>
+			<div>
+				<p>
+					<span class="bold">Campsites: </span>
+					<c:out value="${park.numberOfCampsites}" />
+				</p>
+			</div>
+		</div>
 		<div>
 			<p>
 				<c:out value="${park.description}" />
 			</p>
+			<h2>More Park Facts!</h2>
 			<div>
 				<p>
 					<span class="bold">State: </span>
@@ -45,18 +61,7 @@
 					<c:out value="${park.yearFounded}" />
 				</p>
 			</div>
-			<div>
-				<p>
-					<span class="bold">Entry Fee: </span>
-					<c:out value="$${park.entryFee}" />
-				</p>
-			</div>
-			<div>
-				<p>
-					<span class="bold">Campsites: </span>
-					<c:out value="${park.numberOfCampsites}" />
-				</p>
-			</div>
+
 			<div>
 				<p>
 					<span class="bold">Annual Visitors: </span>
@@ -98,20 +103,22 @@
 
 
 	</div>
-
-	<div>
-		<h2>Park 5-day Weather Forecast</h2>
-	</div>
-	<div>
-		<p>Select temperature preference: </p>
-		<c:url var="setTempPref"
-			value="/park/details?parkCode=${park.parkCode}" />
-		<form method="POST" action="${setTempPref}">
-			<input type="radio" id="fahrenheit" name="tempPreference" value="F"
-				checked> <label for="fahrenheit">Fahrenheit</label> <input
-				type="radio" id="celcius" name="tempPreference" value="C"> <label
-				for="celcius">Celcius</label> <input type="submit" value="Choose" />
-		</form>
+	<div class="forecastHead">
+		<div>
+			<h2>Park 5-day Weather Forecast</h2>
+		</div>
+		<div>
+			<p>Select your temperature preference:</p>
+			<c:url var="setTempPref"
+				value="/park/details?parkCode=${park.parkCode}" />
+			<form method="POST" action="${setTempPref}">
+				<input type="radio" id="fahrenheit" name="tempPreference" value="F"
+					checked> <label for="fahrenheit">Fahrenheit</label> <input
+					type="radio" id="celcius" name="tempPreference" value="C">
+				<label for="celcius">Celcius</label> <input type="submit"
+					value="Choose" />
+			</form>
+		</div>
 	</div>
 
 	<div class="weatherContainer">
@@ -148,7 +155,8 @@
 						</table>
 					</div>
 					<div>
-						<p style="font-weight: bold">National Park Geek Weather Advice: </p>
+						<p style="font-weight: bold">National Park Geek Weather
+							Advice:</p>
 						<c:choose>
 							<c:when
 								test="${forecast.highTemp - forecast.lowTemp >=20  && forecast.forecast.equals('sunny')}">

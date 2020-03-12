@@ -10,9 +10,10 @@
 <title>National Park Geek Home</title>
 </head>
 
-<h1>The Top 5 National Parks</h1>
-<h2>Decided by you!</h2>
-
+<div class="topFiveHead">
+	<h1>The Top 5 National Parks</h1>
+	<h2>Decided by you!</h2>
+</div>
 
 <div>
 	<c:forEach var="park" items="${topFiveParks}">
@@ -21,12 +22,15 @@
 			<c:set var="parkImage" value="${park.parkCode}" />
 			<c:set var="parkImageLc" value="${fn:toLowerCase(parkImage) }" />
 			<c:url var="image" value="/img/parks/${parkImageLc}.jpg" />
-			<c:url var="parkDetails" value="/park/details?parkCode=${park.parkCode}"/>
-			<a href="${parkDetails}"><img src="${image}" style="" alt="park photo" /></a>
+			<c:url var="parkDetails"
+				value="/park/details?parkCode=${park.parkCode}" />
+			<a href="${parkDetails}"><img src="${image}" style=""
+				alt="park photo" /></a>
 			<div>
 				<h2>
 					<c:out value="${park.parkName}" />
 				</h2>
+				<p><c:out value="${park.parkVotes}"/> Votes!</p>
 				<h3>
 					<c:out value="${park.state}" />
 				</h3>
