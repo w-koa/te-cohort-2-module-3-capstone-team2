@@ -41,6 +41,41 @@ public class JdbcWeatherDao implements WeatherDao {
 		}
 		return weatherForecasts;
 	}
+	
+	public String makeRecommendation(Weather weather, String tempPreference) {
+		String recommendation = "";
+		int highTemp = weather.getHighTemp();
+		int lowTemp = weather.getLowTemp();
+		// Undoes conversion to C in order to properly build string
+		if (tempPreference.equals("C")) {
+			highTemp = (int) ((highTemp + 32) * 1.8);
+			lowTemp = (int) ((lowTemp + 32) * 1.8);
+		}
+
+		if (lowTemp < 20) {
+			recommendation = recommendation + "Beware of frigid cold and stay warm! ";
+		}
+		if (highTemp > 75) {
+			recommendation = recommendation + "Bring an extra gallon of water! ";
+		}
+		if ((highTemp - lowTemp) >= 20) {
+			recommendation = recommendation + "Wear breathable layers! ";
+		}
+		if (weather.getForecast().equals("sunny")) {
+			recommendation = recommendation + "Pack sun block! ";
+		}
+		if (weather.getForecast().equals("rain")) {
+			recommendation = recommendation + "Pack rain gear and wear waterproof shoes! ";
+		}
+		if (weather.getForecast().equals("snow")) {
+			recommendation = recommendation + "Pack snow shoes! ";
+		}
+		if (weather.getForecast().equals("thunderstorms")) {
+			recommendation = recommendation + "Seek shelter and avoid hiking on exposed ridges! ";
+		}
+
+		return recommendation;
+	}
 
 	private Weather mapRowToWeather(SqlRowSet row) {
 
