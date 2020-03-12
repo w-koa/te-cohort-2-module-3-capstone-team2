@@ -27,7 +27,6 @@ public class JdbcSurveyDao implements SurveyDao {
 		int newId = getNextId();
 		jdbcTemplate.update(sqlInsertSurveyResult, newId, survey.getParkCode(), survey.getEmail(), survey.getState(),
 				survey.getActivityLevel());
-
 	}
 
 	private int getNextId() {
