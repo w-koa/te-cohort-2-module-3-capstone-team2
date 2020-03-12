@@ -10,6 +10,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import com.techelevator.view.Site;
+
 @Component
 public class JdbcSurveyDao implements SurveyDao {
 
@@ -55,4 +57,25 @@ public class JdbcSurveyDao implements SurveyDao {
 		return topFiveParks;
 	}
 
+	@Override
+	public String getSurveyByParkId(String parkCode) {
+		String sqlFindSurveyById = "SELECT * FROM survey_result WHERE surveyid = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindSurveyById, parkCode);
+		Survey survey = null;
+		if(results.next()) {
+			survey = mapRowToSurvey(results);
+		}
+		return survey;
+	}
 }
+
+//public Site findSiteById(int id) {
+//	String sqlFindSiteById = "SELECT * FROM site WHERE site_id = ?";
+//	SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindSiteById, id);
+//	
+//	Site site = null;
+//	if (results.next()) {
+//		site = mapRowToSite(results);
+//	}
+//	return site;
+//}
