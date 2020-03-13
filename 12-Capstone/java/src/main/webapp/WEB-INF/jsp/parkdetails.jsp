@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <c:import url="/WEB-INF/jsp/common/header.jsp" />
@@ -65,24 +66,29 @@
 			<div>
 				<p>
 					<span class="bold">Annual Visitors: </span>
-					<c:out value="${park.annualVisitors}" />
+					<fmt:formatNumber type="number" var="visitorsFmt" value="${park.annualVisitors}"/>
+					<c:out value="${visitorsFmt}" />
 				</p>
 			</div>
 			<div>
 				<p>
-					<span class="bold">Acreage: </span> ${park.acreage} acres
+					<span class="bold">Acreage: </span> 
+					<fmt:formatNumber type="number" var="acresFmt" value="${park.acreage}"/>
+					<c:out value="${acresFmt} Acres"/>
 				</p>
 			</div>
 			<div>
 				<p>
 					<span class="bold">Elevation: </span>
-					<c:out value="${park.elevationInFeet} ft." />
+					<fmt:formatNumber type="number" var="elevationFmt" value="${park.elevationInFeet}"/>
+					<c:out value="${elevationFmt} ft." />
 				</p>
 			</div>
 			<div>
 				<p>
 					<span class="bold">Trails: </span>
-					<c:out value="${park.milesOfTrail} mi." />
+					<fmt:formatNumber type="number" var="trailsFmt" value="${park.milesOfTrail}"/>
+					<c:out value="${trailsFmt} mi." />
 				</p>
 			</div>
 
