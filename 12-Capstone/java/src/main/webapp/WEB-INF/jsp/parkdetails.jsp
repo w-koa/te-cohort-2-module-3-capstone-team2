@@ -111,7 +111,7 @@
 	</div>
 	<div class="forecastHead">
 		<div>
-			<h2>Park 5-day Weather Forecast</h2>
+			<h2>Park 5-Day Weather Forecast</h2>
 		</div>
 		<div>
 			<p>Select your temperature preference:</p>
