@@ -14,8 +14,8 @@ public class Weather {
 	// Builds a string for weather recommendations
 	public String makeRecommendation(String tempPreference) {
 		String recommendation = "";
-		highTemp = getHighTemp();
-		lowTemp = getLowTemp();
+		int highTemp = this.highTemp;
+		int lowTemp = this.lowTemp;
 		
 		// If Celcius, convert to Fahrenheit in order to properly build string
 		if (tempPreference.equals("C")) {

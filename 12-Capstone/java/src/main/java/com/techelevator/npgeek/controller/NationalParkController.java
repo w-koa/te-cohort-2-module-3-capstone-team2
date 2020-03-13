@@ -66,6 +66,7 @@ public class NationalParkController {
 		for (int i = 0; i < weatherForecasts.size(); i++) {
 			String recommendation = weatherForecasts.get(i).makeRecommendation(tempPref);
 			weatherForecasts.get(i).setRecommendation(recommendation);
+		
 		}
 		Park park = parkDao.getParkByCode(parkCode);
 		map.addAttribute("forecasts", weatherForecasts);
