@@ -75,14 +75,14 @@ public class WeatherDaoTests {
 		assertEquals(expected, weather.getForecast());
 	}
 
-//	@Test
-//	public void testGetForecastByCodeTemperatureConversion() {
-//		List<Weather> forecastList = weatherDao.getForecastByCode("TPTP", "C");
-//		int lowExpected = 0;
-//		int highExpected = 8;
-//		Weather weather = forecastList.get(0);
-//		assertEquals(lowExpected, weather.getLowTemp());
-//		assertEquals(highExpected, weather.getHighTemp());
-//	}
+	@Test
+	public void testGetForecastByCodeTemperatureConversion() {
+		List<Weather> forecastList = weatherDao.getForecastByCode("TPTP", "C");
+		int lowExpected = 0;
+		int highExpected = 8;
+		Weather weather = forecastList.get(0);
+		assertEquals(lowExpected, weather.getLowTemp());
+		assertEquals(highExpected, weather.getHighTemp());
+	}
 // expected 0 for low and 7 for the high
 }
