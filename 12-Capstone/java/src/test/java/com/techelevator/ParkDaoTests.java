@@ -82,14 +82,10 @@ public class ParkDaoTests {
 
 	@Test
 	public void testGetParkByCode() {
-		Park park = parkDao.getParkByCode("TP");
-		String expected = "TP";
+		Park park = parkDao.getParkByCode("TPTP");
+		String expected = "TPTP";
 		String actual = park.getParkCode();
 		assertEquals(expected, actual);
 	}
-	
-	@Test
-	public void testGetAllParks2() {
-		
-	}
 }
+

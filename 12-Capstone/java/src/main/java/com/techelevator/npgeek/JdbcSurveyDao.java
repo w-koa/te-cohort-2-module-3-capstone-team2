@@ -1,5 +1,6 @@
 package com.techelevator.npgeek;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
-import com.techelevator.view.Site;
 
 @Component
 public class JdbcSurveyDao implements SurveyDao {
@@ -26,18 +26,17 @@ public class JdbcSurveyDao implements SurveyDao {
 		Survey newSurveyResult = new Survey();
 		newSurveyResult.setSurveyId(results.getInt("surveyId"));
 		newSurveyResult.setParkCode(results.getString("parkCode"));
-		newSurveyResult.setEmail(results.getString("email"));
+		newSurveyResult.setEmail(results.getString("emailaddress"));
 		newSurveyResult.setState(results.getString("state"));
-		newSurveyResult.setActivityLevel(results.getString("activityLevel"));
+		newSurveyResult.setActivityLevel(results.getString("activityLevel")); 
 
 		return newSurveyResult;
 		}
 	@Override
 	public void saveSurvey(Survey survey) {
 		String sqlInsertSurveyResult = "INSERT INTO survey_result "
-				+ "(surveyid, parkcode, emailaddress, state, activitylevel) " + "VALUES (?, ?, ?, ?, ?)";
-		int newId = getNextId();
-		jdbcTemplate.update(sqlInsertSurveyResult, newId, survey.getParkCode(), survey.getEmail(), survey.getState(),
+				+ "(parkcode, emailaddress, state, activitylevel) " + "VALUES (?, ?, ?, ?)";
+		jdbcTemplate.update(sqlInsertSurveyResult, survey.getParkCode(), survey.getEmail(), survey.getState(),
 				survey.getActivityLevel());
 	}
 
@@ -71,7 +70,7 @@ public class JdbcSurveyDao implements SurveyDao {
 	public List<Survey> getSurveyByParkId(String parkCode) {
 		String sqlFindSurveyById = "SELECT * FROM survey_result WHERE parkcode = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindSurveyById, parkCode);
-		List <Survey> surveyList = new ArrayList <> ();
+		List <Survey> surveyList = new ArrayList<>();
 		while(results.next()) {
 			surveyList.add(mapRowToSurvey(results));
 		}

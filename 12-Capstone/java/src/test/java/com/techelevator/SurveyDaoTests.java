@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -60,7 +62,7 @@ public class SurveyDaoTests {
 	}
 
 	@AfterClass
-	public static void closeDataSource() throws SQLException {
+	public static void closeDataSource() throws SQLException { 
 		dataSource.destroy();
 	}
 
@@ -81,10 +83,22 @@ public class SurveyDaoTests {
 	testSurvey.setState("MI");
 	testSurvey.setActivityLevel("active");
 	surveyDao.saveSurvey(testSurvey);
-	
-	if (surveyDAO != null) {
-		foundFlag = true;
+	String expected = "tim@tim.com";
+	List <Survey> surveysByPark = surveyDao.getSurveyByParkId(testSurvey.getParkCode());
+	Boolean found = false;
+	for(Survey survey: surveysByPark){
+		if(testSurvey.getParkCode().equals(survey.getParkCode())){
+			if(testSurvey.getEmail().equals(survey.getEmail())) {
+				if(testSurvey.getState().equals(survey.getState())) {
+					if(testSurvey.getActivityLevel().equals(survey.getActivityLevel())) {
+						found = true;
+					}
+				}
+			}
+		}
 	}
-	assertTrue(foundFlag);
-}
+	assertTrue(found);
+	
+	}
+
 }

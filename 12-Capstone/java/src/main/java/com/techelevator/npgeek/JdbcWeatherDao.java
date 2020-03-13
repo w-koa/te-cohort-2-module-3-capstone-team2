@@ -39,7 +39,7 @@ public class JdbcWeatherDao implements WeatherDao {
 				weatherForecasts.get(i).setHighTemp(tempHighInCelcius);
 			}
 		}
-		return weatherForecasts;
+		return weatherForecasts; 
 	}
 	
 
