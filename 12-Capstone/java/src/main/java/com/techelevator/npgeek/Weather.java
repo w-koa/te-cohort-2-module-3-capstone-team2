@@ -47,11 +47,6 @@ public class Weather {
 		} 
 		recommendation = recommendation + "Enjoy the day! ";
 
-		// Convert back to Celcius for display
-		if (tempPreference.equals("C")) {
-			highTemp = (int) ((highTemp - 32) / 1.8);
-			lowTemp = (int) ((lowTemp - 32) / 1.8);
-		}
 		return recommendation;
 	}
 
