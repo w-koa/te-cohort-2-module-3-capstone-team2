@@ -33,10 +33,14 @@ public class JdbcWeatherDao implements WeatherDao {
 			for(int i = 0; i< weatherForecasts.size(); i++) {
 				int tempLowInFahrenheit = weatherForecasts.get(i).getLowTemp();
 				int tempHighInFahrenheit = weatherForecasts.get(i).getHighTemp();
-				int tempLowInCelcius = (int) ((tempLowInFahrenheit - 32) / 1.8);
-				int tempHighInCelcius = (int) ((tempHighInFahrenheit - 32) / 1.8);
+				Double lowInC = ((tempLowInFahrenheit - 32) / 1.8);
+				Double highInC = ((tempHighInFahrenheit - 32) / 1.8);
+				int tempLowInCelcius = lowInC.intValue();
+				int tempHighInCelcius = highInC.intValue();
+			//	int tempLowInCelcius = (int) ((tempLowInFahrenheit - 32) / 1.8);
+			//	int tempHighInCelcius = (int) ((tempHighInFahrenheit - 32) / 1.8);
 				weatherForecasts.get(i).setLowTemp(tempLowInCelcius);
-				weatherForecasts.get(i).setHighTemp(tempHighInCelcius);
+				weatherForecasts.get(i).setHighTemp(tempHighInCelcius); 
 			}
 		}
 		return weatherForecasts; 
